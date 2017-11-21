@@ -7,7 +7,7 @@ app.secret_key = os.urandom(256)
 def root():
 	return "hello!"
 
-if __name__ = "__main__":
+if __name__ == "__main__":
 	app.debug = True
 	app.run()
 
