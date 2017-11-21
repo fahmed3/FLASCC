@@ -1,4 +1,14 @@
-def call_api():
+def call_api(src, dest):
+	'''
+	Calls the Google Directions API
+	
+	@param src The origin address
+	@param dest The desired destination address
+	
+	@returns A dictionary version of the JSON response
+	'''
+	
+	
 	pass
 
 def get_time():
