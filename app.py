@@ -48,7 +48,16 @@ def test():
 	data = directions.call_api(key, "345 Chambers St New York, NY",
 		"11 West 53 St New York, NY")
 	#print data
-	return str(data)
+	print directions.get_time(data)
+	print directions.get_distance(data)
+	print directions.get_directions(data)
+	
+	res = ""
+	for d in directions.get_directions(data):
+		res += d
+		res += "<br>"
+	
+	return res
 
 if __name__ == "__main__":
 	app.debug = True

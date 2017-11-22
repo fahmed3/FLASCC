@@ -39,23 +39,20 @@ def get_time(response):
 	@return: The total duration in minutes 
 	'''
 	
-	
-	
-	pass
+	return response["routes"][0]["legs"][0]["duration"]["value"] / 60
 
-def distance(response):
+def get_distance(response):
 	'''
 	Extracts the total distance for a trip
 	
 	@type response: dictionary
 	@param response: The dictionary returned from call_api()
 	
-	@rtype: number
-	@return: The total distance in miles 
+	@rtype: string
+	@return: The total distance based on the locale of the origin
 	'''
 	
-	
-	pass
+	return response["routes"][0]["legs"][0]["distance"]["text"]
 
 def get_directions(response):
 	'''
@@ -68,6 +65,11 @@ def get_directions(response):
 	@return: A list containing html formatted directions
 	'''
 	
+	result = []
+	steps = response["routes"][0]["legs"][0]["steps"]
 	
-	pass
+	for step in steps:
+		result.append(step["html_instructions"])
+	
+	return result
 
