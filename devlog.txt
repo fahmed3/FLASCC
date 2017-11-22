@@ -1,3 +1,6 @@
 linS -- 2017-11-21 18:59:50
 updated gitignore
 
+linS -- 2017-11-21 19:46:29
+added call_api for directions, documentation, and a testing function
+
