@@ -3,6 +3,7 @@ import requests
 def call_api(key, src, dest):
 	'''
 	Calls the Google Directions API
+	Note that not all requests are successful, so check the status first
 	
 	@type key: string
 	@param key: The api key
