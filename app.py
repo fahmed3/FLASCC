@@ -18,12 +18,23 @@ def validAddress():
 def root():
     return render_template("home.html")
 
-@app.route('/results', methods = ['POST'])
+@app.route('/results', methods = ['POST', 'GET'])
 def results():
+    address = request.form['address']
+    search = request.form['search']
+    #check if address is valid
+    #info from apis for nearest restaurants using address and search
+    #info sent to results.html
     return render_template("results.html")
 
+@app.route('/info')
+def info():
+    #info page for selected restaurant
+    #get info from zomato
+    return render_template("info.html")
+
 #I don't think we need users or sessions for this project
-#commenting it out for now
+#I'll comment it out for now
 '''
     if 'user' not in session or 'address' not in session or validAddress():
         return render_template('login.html', title="Login")
