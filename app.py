@@ -1,7 +1,8 @@
-from flask import Flask, session, render_template
-from utils import directions
+from flask import Flask, session, render_template, request
+#from utils import directions
 
-import requests, json, urllib3
+import json, urllib3
+#couldn't import requests?
 
 #the file with our api keys
 KEY_FILE = "keys.json"
@@ -15,12 +16,22 @@ def validAddress():
 
 @app.route('/')
 def root():
+    return render_template("home.html")
+
+@app.route('/results', methods = ['POST'])
+def results():
+    return render_template("results.html")
+
+#I don't think we need users or sessions for this project
+#commenting it out for now
+'''
     if 'user' not in session or 'address' not in session or validAddress():
         return render_template('login.html', title="Login")
 
     else:
         return redirect( url_for('search') )
-
+'''
+    
 @app.route('/search')
 def search():
     if 'user' not in session or 'address' not in session or validAddress():
