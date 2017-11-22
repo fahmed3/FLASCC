@@ -7,3 +7,6 @@ added call_api for directions, documentation, and a testing function
 ahmedF -- 2017-11-22 14:07:04
 added templates for result and info page
 
+linS -- 2017-11-22 14:39:06
+finished directions.py, may add error checking later
+
