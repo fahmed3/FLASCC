@@ -21,6 +21,12 @@ def call_api(key, src, dest):
 	src = "+".join(src.split(" "))
 	dest = "+".join(dest.split(" "))
 	
+	print "https://maps.googleapis.com"\
+	"/maps/api/directions/json?"\
+	"origin=%s"\
+	"&destination=%s"\
+	"&key=%s"%(src, dest, key)
+	
 	response = requests.get("https://maps.googleapis.com"
 	"/maps/api/directions/json?"
 	"origin=%s"
@@ -28,6 +34,19 @@ def call_api(key, src, dest):
 	"&key=%s"%(src, dest, key)).json()
 	
 	return response
+
+def get_status(response):
+	'''
+	Gets the response status to be used in error handling
+	See: https://developers.google.com/maps/documentation/directions/intro#StatusCodes
+	
+	@type response: dictionary
+	@param response: The dictionary returned from call_api()
+	
+	@rtype: string
+	@return: The status string
+	'''
+	return response["status"]
 
 def get_time(response):
 	'''

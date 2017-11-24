@@ -1,11 +1,14 @@
 from flask import Flask, session, render_template, request
-#from utils import directions
+from utils import directions
 
+#pip install the missing modules
 import json, urllib3
-#couldn't import requests?
 
 #the file with our api keys
 KEY_FILE = "keys.json"
+
+#for sessions
+ORIGIN_ADDRESS = "origin"
 
 app= Flask(__name__)
 urllib3.disable_warnings()	#fixes ssl errors
@@ -20,8 +23,17 @@ def root():
 
 @app.route('/results', methods = ['POST', 'GET'])
 def results():
-    address = request.form['address']
-    search = request.form['search']
+    if "address" in request.form:
+        address = request.form['address']
+	session[ORIGIN_ADDRESS] = address
+        print request.form["address"]
+
+    if "search" in request.form:
+        search = request.form['search']
+        print request.form["search"]
+
+
+
     #check if address is valid
     #info from apis for nearest restaurants using address and search
     #info sent to results.html
@@ -29,8 +41,12 @@ def results():
 
 @app.route('/info')
 def info():
-    #info page for selected restaurant
-    #get info from zomato
+    '''
+    info page for selected restaurant
+    get info from zomato
+    
+    also use directions to display directions on how to get to the restaurant
+    '''
     return render_template("info.html")
 
 #I don't think we need users or sessions for this project
