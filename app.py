@@ -33,25 +33,32 @@ def results():
         search = request.form['search']
         print request.form["search"]
 
-    restaurants = food.get_resaurants();
-    results = []
-    
+    api_keys = json.load(open(KEY_FILE))
+    restaurants = food.get_restaurants(
+        api_keys["zomato"],
+        session[ORIGIN_ADDRESS],
+        search);
+
+    results = []   
     for item in restaurants:
-	data = directions.call_api()
         temp = {}
+        temp["id"] = food.get_id(item)
         temp["name"] = food.get_name(item)
         temp["rating"] = food.get_rating(item)
         temp["address"] = food.get_address(item)
-        temp["distance"] = directions.get_distance()
-        temp["travelDuration"] = directions.get_time()
 
-
-
+        data = directions.call_api(api_keys["directions"],
+            session[ORIGIN_ADDRESS],
+            temp["address"])
+        
+        temp["distance"] = directions.get_distance(data)
+        temp["travelDuration"] = directions.get_time(data)
+        results.append(temp)
 
     #check if address is valid
     #info from apis for nearest restaurants using address and search
     #info sent to results.html
-    return render_template("results.html")
+    return render_template("results.html", results=results)
 
 @app.route('/info')
 def info():
@@ -75,11 +82,10 @@ def info():
         restaurant = {}
         restaurant["name"] = food.get_name(zom_data)
         restaurant["rating"] = food.get_rating(zom_data)
+        restaurant["address"] = food.get_address(zom_data)
 	restaurant["menu"] = food.get_menu(zom_data)
 	restaurant["cuisines"] = food.get_cuisines(zom_data)
 	restaurant["numReviews"] = food.get_num_of_reviews(zom_data)
-        restaurant["address"] = food.get_address(zom_data)
-	
 	
 	dir_data = directions.call_api(
 		api_keys["directions"],

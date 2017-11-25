@@ -8,7 +8,8 @@
 Pass in a list named results with the following in each element:
 
 {
-	name: <restaurant name>,
+	id: ,
+	name: ,
 	rating: ,
 	address: ,
 	distance: ,
@@ -21,7 +22,7 @@ Pass in a list named results with the following in each element:
   <div class="card-body">
     <h4 class="card-title">{{item.name}}</h4>
     <p class="card-text">{{item.address}}</p>
-    <a href="/info" class="btn btn-primary">More info</a>
+    <a href={{"/info?restaurant_id=" ~ item.id}} class="btn btn-primary">More info</a>
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item">{{item.rating}}</li>
