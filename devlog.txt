@@ -19,3 +19,6 @@ writing some code for page rendering
 linS -- 2017-11-25 12:34:57
 finished most of the boilerplate for site. just waiting on the zomato api to be finished
 
+ahmedF -- 2017-11-25 14:31:01
+added some css stuff, edited home
+
