@@ -2,4 +2,31 @@
 
 {% block body %}
 
+<!--
+Pass in a dictionary named restaurant with the following:
+
+{
+	name: <restaurant name>,
+	rating: ,
+	address: ,
+	menu: ,
+	cuisines: ,
+	numRewiews: ,
+	distance: ,
+	travelDuration: ,
+	directions: [
+		<list of strings>
+	]
+}
+-->
+
+
+
+{% for step in restaurant.directions %}
+
+<p>{{step}}</p>
+<br>
+
+{% endfor %}
+
 {% endblock %}

@@ -13,3 +13,6 @@ finished directions.py, may add error checking later
 linS -- 2017-11-24 18:23:03
 minor modifications
 
+linS -- 2017-11-25 12:20:15
+writing some code for page rendering
+

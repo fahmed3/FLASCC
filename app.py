@@ -1,8 +1,8 @@
 from flask import Flask, session, render_template, request
-from utils import directions
+from utils import directions, food
 
 #pip install the missing modules
-import json, urllib3
+import json, urllib3, os
 
 #the file with our api keys
 KEY_FILE = "keys.json"
@@ -11,6 +11,7 @@ KEY_FILE = "keys.json"
 ORIGIN_ADDRESS = "origin"
 
 app= Flask(__name__)
+app.secret_key = os.urandom(256)
 urllib3.disable_warnings()	#fixes ssl errors
 
 def validAddress():
@@ -32,6 +33,19 @@ def results():
         search = request.form['search']
         print request.form["search"]
 
+    restaurants = food.get_resaurants();
+    results = []
+    
+    for item in restaurants:
+	data = directions.call_api()
+        temp = {}
+        temp["name"] = food.get_name(item)
+        temp["rating"] = food.get_rating(item)
+        temp["address"] = food.get_address(item)
+        temp["distance"] = directions.get_distance()
+        temp["travelDuration"] = directions.get_time()
+
+
 
 
     #check if address is valid
@@ -41,13 +55,43 @@ def results():
 
 @app.route('/info')
 def info():
-    '''
-    info page for selected restaurant
-    get info from zomato
-    
-    also use directions to display directions on how to get to the restaurant
-    '''
-    return render_template("info.html")
+	'''
+	info page for selected restaurant
+	get info from zomato
+
+	also use directions to display directions on how to get to the restaurant
+	'''
+	r_id = ""
+	if "restaurant_id" in request.args:
+		r_id = request.args["restaurant_id"]
+	else:
+		return redirect(url_for("root"))
+	
+	api_keys = json.load(open(KEY_FILE))
+	restaurant = {}
+	
+	zom_data = food.get_restaurant(api_keys["zomato"], r_id)
+		
+        restaurant = {}
+        restaurant["name"] = food.get_name(zom_data)
+        restaurant["rating"] = food.get_rating(zom_data)
+	restaurant["menu"] = food.get_menu(zom_data)
+	restaurant["cuisines"] = food.get_cuisines(zom_data)
+	restaurant["numReviews"] = food.get_num_of_reviews(zom_data)
+        restaurant["address"] = food.get_address(zom_data)
+	
+	
+	dir_data = directions.call_api(
+		api_keys["directions"],
+		session[ORIGIN_ADDRESS],
+		restaurant["address"])
+
+        restaurant["distance"] = directions.get_distance(dir_data)
+        restaurant["travelDuration"] = directions.get_time(dir_data)
+        restaurant["directions"] = directions.get_directions(dir_data)
+	
+	
+	return render_template("info.html", restaurant=restaurant)
 
 #I don't think we need users or sessions for this project
 #I'll comment it out for now
