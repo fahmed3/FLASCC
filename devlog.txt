@@ -4,6 +4,9 @@ updated gitignore
 linS -- 2017-11-21 19:46:29
 added call_api for directions, documentation, and a testing function
 
+chengC -- 2017-11-22 14:09:27
+updated app.py with some basic roots and functions
+
 ahmedF -- 2017-11-22 14:07:04
 added templates for result and info page
 
