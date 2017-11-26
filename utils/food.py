@@ -1,7 +1,17 @@
 import requests
 
 def get_restaurants(key, origin, keyword):
-	pass
+	#in case origin  or keyword are multiple words long
+	origin = "%20".join(origin.split(" "))
+	keyword = "+".join(keyword.split(" "))
+	print "https://developers.zomato.com"
+	"/api/v2.1/search?"
+	"q="
+	"entity_id="
+	"sort=real_distance"
+
+
+	#https://developers.zomato.com/api/v2.1/search?entity_id=%22345%20chambers%20street%20new%20york%20city%2010282%22&q=thai&sort=real_distance
 
 def get_restaurant(key, restaurant_id):
 	pass
@@ -30,4 +40,3 @@ def get_id(d):
 	for use when passing data from results page to info page
 	'''
 	pass
-
