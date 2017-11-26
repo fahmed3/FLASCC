@@ -22,3 +22,5 @@ finished most of the boilerplate for site. just waiting on the zomato api to be 
 ahmedF -- 2017-11-25 14:31:01
 added some css stuff, edited home
 
+ahmedF -- 2017-11-25 21:08:10
+changed address form to accept different parameters, tweaked home.html and css

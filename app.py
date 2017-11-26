@@ -1,4 +1,4 @@
-from flask import Flask, session, render_template, request
+from flask import Flask, session, render_template, request, flash, redirect, url_for
 from utils import directions, food
 
 #pip install the missing modules
@@ -22,16 +22,33 @@ def validAddress():
 def root():
     return render_template("home.html")
 
+#helper function to check if address form was filled
+def check(param, form):
+    if param in form and form[param] != '':
+        return True
+    else:
+        return False
+
 @app.route('/results', methods = ['POST', 'GET'])
 def results():
-    if "address" in request.form:
-        address = request.form['address']
-	session[ORIGIN_ADDRESS] = address
-        print request.form["address"]
+    form = request.form
+    #adds address to the session if all address fields were filled in
+    if check('address',form) and check('city',form) and check('state',form) and check('zip',form):
+        address = "%s, %s, %s %s" % (
+                form['address'],
+                form['city'],
+                form['state'],
+                form['zip'])
+        #print address
+        session[ORIGIN_ADDRESS] = address
+    #if all address fields weren't filled in, redirects to home page
+    else:
+        flash("***Please enter your address***")
+        return redirect(url_for('root'))
 
-    if "search" in request.form:
-        search = request.form['search']
-        print request.form["search"]
+    if 'search' in form:
+        #print form["search"]
+        search = form['search']
 
     api_keys = json.load(open(KEY_FILE))
     restaurants = food.get_restaurants(
