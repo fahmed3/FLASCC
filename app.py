@@ -56,21 +56,91 @@ def results():
         session[ORIGIN_ADDRESS],
         search);
 
-    results = []   
-    for item in restaurants:
-        temp = {}
-        temp["id"] = food.get_id(item)
-        temp["name"] = food.get_name(item)
-        temp["rating"] = food.get_rating(item)
-        temp["address"] = food.get_address(item)
+    #dummy data, remove when api is done
+    restaurants = json.loads('''{
+  "results_found": 1,
+  "results_start": 0,
+  "results_shown": 1,
+  "restaurants": [
+    {
+      "restaurant": {
+        "R": {
+          "res_id": 17224907
+        },
+        "apikey": "cf8c9ba42742080b5d9e335fa01a9fa2",
+        "id": "17224907",
+        "name": "Hi-So Thai",
+        "url": "https://www.zomato.com/weehawken-nj/hi-so-thai-weehawken?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1",
+        "location": {
+          "address": "1903 Willow Ave, Weehawken 07086",
+          "locality": "Weehawken",
+          "city": "Weehawken",
+          "city_id": 3924,
+          "latitude": "40.7601750000",
+          "longitude": "-74.0275020000",
+          "zipcode": "07086",
+          "country_id": 216,
+          "locality_verbose": "Weehawken, Weehawken"
+        },
+        "switch_to_order_menu": 0,
+        "cuisines": "Thai",
+        "average_cost_for_two": 25,
+        "price_range": 2,
+        "currency": "$",
+        "offers": [],
+        "thumb": "",
+        "user_rating": {
+          "aggregate_rating": "3.6",
+          "rating_text": "Good",
+          "rating_color": "9ACD32",
+          "votes": "46"
+        },
+        "photos_url": "https://www.zomato.com/weehawken-nj/hi-so-thai-weehawken/photos?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1#tabtop",
+        "menu_url": "https://www.zomato.com/weehawken-nj/hi-so-thai-weehawken/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop",
+        "featured_image": "",
+        "has_online_delivery": 0,
+        "is_delivering_now": 0,
+        "deeplink": "zomato://restaurant/17224907",
+        "has_table_booking": 0,
+        "events_url": "https://www.zomato.com/weehawken-nj/hi-so-thai-weehawken/events#tabtop?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1",
+        "establishment_types": []
+      }
+    }
+  ]
+}''')
 
-        data = directions.call_api(api_keys["directions"],
-            session[ORIGIN_ADDRESS],
-            temp["address"])
+    results = []
+    for item in restaurants["restaurants"]:
+		'''
+		temp = {}
+		temp["id"] = food.get_id(item)
+		temp["name"] = food.get_name(item)
+		temp["rating"] = food.get_rating(item)
+		temp["address"] = food.get_address(item)
+
+		data = directions.call_api(api_keys["directions"],
+		    session[ORIGIN_ADDRESS],
+		    temp["address"])
+		
+		temp["distance"] = directions.get_distance(data)
+		temp["travelDuration"] = directions.get_time(data)
+		results.append(temp)
+		'''
+		#remove below and uncomment above when api is done
+		temp = {}
+		temp["id"] = item["restaurant"]["id"]
+		temp["name"] = item["restaurant"]["name"]
+		temp["rating"] = item["restaurant"]["user_rating"]["aggregate_rating"]
+		temp["address"] = item["restaurant"]["location"]["address"]
+
+		data = directions.call_api(api_keys["directions"],
+		    session[ORIGIN_ADDRESS],
+		    temp["address"])
+		
+		temp["distance"] = directions.get_distance(data)
+		temp["travelDuration"] = directions.get_time(data)
+		results.append(temp)
         
-        temp["distance"] = directions.get_distance(data)
-        temp["travelDuration"] = directions.get_time(data)
-        results.append(temp)
 
     #check if address is valid
     #info from apis for nearest restaurants using address and search
@@ -126,12 +196,14 @@ def info():
         return redirect( url_for('search') )
 '''
     
+'''
 @app.route('/search')
 def search():
     if 'user' not in session or 'address' not in session or validAddress():
         return redirect( url_for('/') )
     else:
         return render_template('search.html', title = "Search")
+'''
 
 @app.route('/test')
 def test():

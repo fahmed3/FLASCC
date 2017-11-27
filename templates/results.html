@@ -18,15 +18,14 @@ Pass in a list named results with the following in each element:
 -->
 
 <div class="card" style="width: 20rem;">
-  <img class="card-img-top" src="" alt="Card image cap">
   <div class="card-body">
     <h4 class="card-title">{{item.name}}</h4>
     <p class="card-text">{{item.address}}</p>
     <a href={{"/info?restaurant_id=" ~ item.id}} class="btn btn-primary">More info</a>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">{{item.rating}}</li>
-    <li class="list-group-item">{{item.distance}}</li>
+    <li class="list-group-item">{{item.rating}} stars</li>
+    <li class="list-group-item">{{item.distance}} away</li>
   </ul>
 </div>
 

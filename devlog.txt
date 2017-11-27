@@ -30,3 +30,6 @@ changed address form to accept different parameters, tweaked home.html and css
 
 chengC - 2017-11-26 13:30:10
 added zomato api calls to food.py 
+linS -- 2017-11-27 14:36:40
+POC of the results page
+
