@@ -21,10 +21,11 @@ Pass in a dictionary named restaurant with the following:
 -->
 
 
-
+<h2> Directions: </h2>
 {% for step in restaurant.directions %}
-
-<p>{{step}}</p>
+<ol class="steps">
+  <li class="step">{{step}}</li>
+</ol>
 <br>
 
 {% endfor %}
