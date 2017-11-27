@@ -165,11 +165,54 @@ def info():
 	restaurant = {}
 	
 	zom_data = food.get_restaurant(api_keys["zomato"], r_id)
-		
-        restaurant = {}
-        restaurant["name"] = food.get_name(zom_data)
-        restaurant["rating"] = food.get_rating(zom_data)
-        restaurant["address"] = food.get_address(zom_data)
+	
+	zom_data = json.loads('''{
+  "R": {
+    "res_id": 17224907
+  },
+  "apikey": "cf8c9ba42742080b5d9e335fa01a9fa2",
+  "id": "17224907",
+  "name": "Hi-So Thai",
+  "url": "https://www.zomato.com/weehawken-nj/hi-so-thai-weehawken?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1",
+  "location": {
+    "address": "1903 Willow Ave, Weehawken 07086",
+    "locality": "Weehawken",
+    "city": "Weehawken",
+    "city_id": 3924,
+    "latitude": "40.7601750000",
+    "longitude": "-74.0275020000",
+    "zipcode": "07086",
+    "country_id": 216,
+    "locality_verbose": "Weehawken, Weehawken"
+  },
+  "switch_to_order_menu": 0,
+  "cuisines": "Thai",
+  "average_cost_for_two": 25,
+  "price_range": 2,
+  "currency": "$",
+  "offers": [],
+  "thumb": "",
+  "user_rating": {
+    "aggregate_rating": "3.6",
+    "rating_text": "Good",
+    "rating_color": "9ACD32",
+    "votes": "46"
+  },
+  "photos_url": "https://www.zomato.com/weehawken-nj/hi-so-thai-weehawken/photos?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1#tabtop",
+  "menu_url": "https://www.zomato.com/weehawken-nj/hi-so-thai-weehawken/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop",
+  "featured_image": "",
+  "has_online_delivery": 0,
+  "is_delivering_now": 0,
+  "deeplink": "zomato://restaurant/17224907",
+  "has_table_booking": 0,
+  "events_url": "https://www.zomato.com/weehawken-nj/hi-so-thai-weehawken/events#tabtop?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1"
+}''')
+    
+	'''
+    restaurant = {}
+    restaurant["name"] = food.get_name(zom_data)
+    restaurant["rating"] = food.get_rating(zom_data)
+    restaurant["address"] = food.get_address(zom_data)
 	restaurant["menu"] = food.get_menu(zom_data)
 	restaurant["cuisines"] = food.get_cuisines(zom_data)
 	restaurant["numReviews"] = food.get_num_of_reviews(zom_data)
@@ -179,9 +222,27 @@ def info():
 		session[ORIGIN_ADDRESS],
 		restaurant["address"])
 
-        restaurant["distance"] = directions.get_distance(dir_data)
-        restaurant["travelDuration"] = directions.get_time(dir_data)
-        restaurant["directions"] = directions.get_directions(dir_data)
+    restaurant["distance"] = directions.get_distance(dir_data)
+    restaurant["travelDuration"] = directions.get_time(dir_data)
+    restaurant["directions"] = directions.get_directions(dir_data)
+	'''
+    
+	restaurant = {}
+	restaurant["name"] = zom_data["name"]
+	restaurant["rating"] = zom_data["user_rating"]["aggregate_rating"]
+	restaurant["address"] = zom_data["location"]["address"]
+	restaurant["menu"] = zom_data["menu_url"]
+	restaurant["cuisines"] = zom_data["cuisines"]
+	#restaurant["numReviews"] = zom_data
+
+	dir_data = directions.call_api(
+		api_keys["directions"],
+		session[ORIGIN_ADDRESS],
+		restaurant["address"])
+
+	restaurant["distance"] = directions.get_distance(dir_data)
+	restaurant["travelDuration"] = directions.get_time(dir_data)
+	restaurant["directions"] = directions.get_directions(dir_data)
 	
 	
 	return render_template("info.html", restaurant=restaurant)

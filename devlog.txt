@@ -33,3 +33,6 @@ added zomato api calls to food.py
 linS -- 2017-11-27 14:36:40
 POC of the results page
 
+linS -- 2017-11-27 14:50:39
+more testing of info.html
+
