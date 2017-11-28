@@ -1,8 +1,9 @@
-{% extends "home.html" %}
-
-{% block body %}
+{% extends "results.html" %}
 
 <!--
+{% block body %}
+
+
 Pass in a dictionary named restaurant with the following:
 
 {
@@ -18,16 +19,16 @@ Pass in a dictionary named restaurant with the following:
 		<list of strings>
 	]
 }
--->
+
 
 
 <h2> Directions: </h2>
-{% for step in restaurant.directions %}
+
 <ol class="steps">
+{% for step in restaurant.directions %}
   <li class="step">{{step}}</li>
+{% endfor %}
 </ol>
 <br>
-
-{% endfor %}
-
-{% endblock %}
+-->
+<!--{% endblock %}-->
