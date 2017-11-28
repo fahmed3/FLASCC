@@ -2,41 +2,57 @@ import requests
 
 def get_restaurants(key, origin, keyword):
 	#in case origin  or keyword are multiple words long
-	origin = "%20".join(origin.split(" "))
-	keyword = "+".join(keyword.split(" "))
-	print "https://developers.zomato.com"
-	"/api/v2.1/search?"
-	"q="
-	"entity_id="
-	"sort=real_distance"
+	origin = "%20".join(origin.split(", "))
+	origin = "%22" + ("%20".join(origin.split(" "))) + "%22"
+	keyword = "+".join(keyword.split(" ")) + ""
+	print "https://developers.zomato.com"\
+	"/api/v2.1/search?"\
+	"entity_id=%s"\
+	"&q=%s"\
+	"&sort=real_distance"%(origin, keyword)
 
+	url = "https://developers.zomato.com"\
+	"/api/v2.1/search?"\
+	"entity_id=%s"\
+	"&q=%s&sort=real_distance"%(origin,keyword)
 
-	#https://developers.zomato.com/api/v2.1/search?entity_id=%22345%20chambers%20street%20new%20york%20city%2010282%22&q=thai&sort=real_distance
+	headers = {'Accept': 'application/json','user-key': key}
+	response = requests.get(url, headers=headers)
+
+	# print "\n\n"
+	# for x in response:
+    # 	print x
+    # for y in response[x]:
+    #     print (y,':',response[x][y])
+	print response
+	print response.json()
+	return response
 
 def get_restaurant(key, restaurant_id):
 	pass
 
 #can't use dict because its a reserved keyword
 def get_rating(d):
-	pass
+	return d["restaurants"]["user_rating"]["aggregate_rating"]
 
 def get_address(d):
-	pass
+	return d["restaurants"]["location"]["address"]
 
 def get_menu(d):
-	pass
+	return d["restaurants"]["menu_url"]
 
 def get_cuisines(d):
-	pass
+	return d["restaurants"]["cuisines"]
 
 def get_name(d):
-	pass
+	return d["restaurants"]["name"]
 
 def get_num_of_reviews(d):
-	pass
+	return d["restaurants"]["all_reviews_count"]
 
 def get_id(d):
 	'''
 	for use when passing data from results page to info page
 	'''
-	pass
+	print d + "\n"
+	return d[0]
