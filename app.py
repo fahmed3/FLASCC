@@ -58,10 +58,54 @@ def results():
 
     #dummy data, remove when api is done
     restaurants = json.loads('''{
-  "results_found": 1,
+  "results_found": 2,
   "results_start": 0,
-  "results_shown": 1,
+  "results_shown": 2,
   "restaurants": [
+    {
+      "restaurant": {
+        "R": {
+          "res_id": 17224907
+        },
+        "apikey": "cf8c9ba42742080b5d9e335fa01a9fa2",
+        "id": "17224907",
+        "name": "Hi-So Thai",
+        "url": "https://www.zomato.com/weehawken-nj/hi-so-thai-weehawken?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1",
+        "location": {
+          "address": "1903 Willow Ave, Weehawken 07086",
+          "locality": "Weehawken",
+          "city": "Weehawken",
+          "city_id": 3924,
+          "latitude": "40.7601750000",
+          "longitude": "-74.0275020000",
+          "zipcode": "07086",
+          "country_id": 216,
+          "locality_verbose": "Weehawken, Weehawken"
+        },
+        "switch_to_order_menu": 0,
+        "cuisines": "Thai",
+        "average_cost_for_two": 25,
+        "price_range": 2,
+        "currency": "$",
+        "offers": [],
+        "thumb": "",
+        "user_rating": {
+          "aggregate_rating": "3.6",
+          "rating_text": "Good",
+          "rating_color": "9ACD32",
+          "votes": "46"
+        },
+        "photos_url": "https://www.zomato.com/weehawken-nj/hi-so-thai-weehawken/photos?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1#tabtop",
+        "menu_url": "https://www.zomato.com/weehawken-nj/hi-so-thai-weehawken/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop",
+        "featured_image": "",
+        "has_online_delivery": 0,
+        "is_delivering_now": 0,
+        "deeplink": "zomato://restaurant/17224907",
+        "has_table_booking": 0,
+        "events_url": "https://www.zomato.com/weehawken-nj/hi-so-thai-weehawken/events#tabtop?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1",
+        "establishment_types": []
+      }
+    },
     {
       "restaurant": {
         "R": {
