@@ -142,9 +142,6 @@ def results():
 		results.append(temp)
         
 
-    #check if address is valid
-    #info from apis for nearest restaurants using address and search
-    #info sent to results.html
     return render_template("results.html", results=results)
 
 @app.route('/info')
@@ -246,25 +243,6 @@ def info():
 	
 	
 	return render_template("info.html", restaurant=restaurant)
-
-#I don't think we need users or sessions for this project
-#I'll comment it out for now
-'''
-    if 'user' not in session or 'address' not in session or validAddress():
-        return render_template('login.html', title="Login")
-
-    else:
-        return redirect( url_for('search') )
-'''
-    
-'''
-@app.route('/search')
-def search():
-    if 'user' not in session or 'address' not in session or validAddress():
-        return redirect( url_for('/') )
-    else:
-        return render_template('search.html', title = "Search")
-'''
 
 @app.route('/test')
 def test():

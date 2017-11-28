@@ -1,9 +1,8 @@
 {% extends "results.html" %}
 
-<!--
 {% block body %}
 
-
+<!--
 Pass in a dictionary named restaurant with the following:
 
 {
@@ -19,16 +18,23 @@ Pass in a dictionary named restaurant with the following:
 		<list of strings>
 	]
 }
+-->
 
-
+<h1> {{restaurant.name}} </h1>
+<p> Rating: {{restaurant.rating}} stars</p>
+<p> {{restaurant.address}} </p>
+<a href={{restaurant.menu}}>Menu link</a>
+<p> Cuisines offered: {{restaurant.cuisines}} </p>
+<p> {{restaurant.distance}} ({{restaurant.travelDuration}} minutes) away</p>
 
 <h2> Directions: </h2>
 
 <ol class="steps">
 {% for step in restaurant.directions %}
-  <li class="step">{{step}}</li>
+  <!--so jinja won't convert the html to literal string-->
+  <li class="step">{{step|safe}}</li>
 {% endfor %}
 </ol>
 <br>
--->
-<!--{% endblock %}-->
+
+{% endblock %}
