@@ -20,12 +20,25 @@ Pass in a dictionary named restaurant with the following:
 }
 -->
 
+
 <h1> {{restaurant.name}} </h1>
-<p> Rating: {{restaurant.rating}} stars</p>
-<p> {{restaurant.address}} </p>
-<a href={{restaurant.menu}}>Menu link</a>
-<p> Cuisines offered: {{restaurant.cuisines}} </p>
-<p> {{restaurant.distance}} ({{restaurant.travelDuration}} minutes) away</p>
+<h4 style="text-align: center;"> {{restaurant.address}} </h4>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <p style="text-align: center;"> Rating: {{restaurant.rating}} stars</p>
+    </div>
+    <div class="col">
+      <p style="text-align: center;"> {{restaurant.distance}} ({{restaurant.travelDuration}} minutes) away</p>
+    </div>
+  </div>
+</div>
+
+<p style="text-align: center;"> Cuisines offered: {{restaurant.cuisines}} </p>
+
+<a href={{restaurant.menu}} style="margin:0 auto;">Menu link</a>
+
 
 <h2> Directions: </h2>
 

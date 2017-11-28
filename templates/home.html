@@ -5,8 +5,8 @@
     <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='style.css') }}>
     <title> Eatables </title>
   </head>
-  {% block body %}
   <body class="col-md-6 mx-auto">
+  {% block body %}
     <h1> Welcome to Eatables! </h1>
     <div class="desc">
       <p> We are a website dedicated to helping you find the perfect place to go out to eat. We just need your address to find restaurants near you, and you may search if you're in the mood for something specific. Enter these fields, and you'll be on your way!</p>
@@ -35,7 +35,7 @@
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-  </body>
   {% endblock %}
+  </body>
 </html>
 
