@@ -37,4 +37,6 @@ linS -- 2017-11-27 14:50:39
 more testing of info.html
 
 ahmedF -- 2017-11-27 22:54:00
-worked on info.html, need to include other info still
+worked on info.html, need to include other info stilllinS -- 2017-11-28 00:18:28
+tested info.html
+
