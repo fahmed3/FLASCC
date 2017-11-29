@@ -21,7 +21,7 @@ def call_api(key, src, dest):
 	src = "+".join(src.split(" "))
 	dest = "+".join(dest.split(" "))
 	
-	print "https://maps.googleapis.com"\
+	#print "https://maps.googleapis.com"\
 	"/maps/api/directions/json?"\
 	"origin=%s"\
 	"&destination=%s"\

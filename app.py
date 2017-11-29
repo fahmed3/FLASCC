@@ -101,7 +101,7 @@ def info():
 	restaurant["menu"] = zom_data["menu_url"]
 	restaurant["cuisines"] = zom_data["cuisines"]
 
-	print session[ORIGIN_ADDRESS]
+	#print session[ORIGIN_ADDRESS]
 
 	dir_data = directions.call_api(
 		api_keys["directions"],
@@ -115,25 +115,6 @@ def info():
 
 	return render_template("info.html", restaurant=restaurant)
 
-@app.route('/test')
-def test():
-	'''
-	Stanley: just testing my functions out
-	'''
-	key = json.load(open(KEY_FILE))["directions"]
-	data = directions.call_api(key, "345 Chambers St New York, NY",
-		"11 West 53 St New York, NY")
-	#print data
-	print directions.get_time(data)
-	print directions.get_distance(data)
-	print directions.get_directions(data)
-
-	res = ""
-	for d in directions.get_directions(data):
-		res += d
-		res += "<br>"
-
-	return res
 
 if __name__ == "__main__":
 	app.debug = True

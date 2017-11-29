@@ -54,4 +54,6 @@ ahmedF -- 2017-11-28 19:09:22
 edited app.py, fixed some bugs
 
 chengC - 2017-11-26 20:17:12
-resolved api bugs in food.py and app.py
+resolved api bugs in food.py and app.pyahmedF -- 2017-11-28 21:25:05
+added home button, did some cleaning
+

@@ -41,6 +41,11 @@ body{
     background:rgba(255,255,255,0.6);
 }
 
+#homebtn{
+    margin-top: 1rem;
+    float: right;
+}
+
 .btn-primary{
     background-color:#800000;
     border: none;
@@ -61,3 +66,8 @@ body{
 }
 
 .btn-primary:not([disabled]):not(.disabled).active,.btn-primary:not([disabled]):not(.disabled):active,.show>.btn-primary.dropdown-toggle{color:#fff;background-color:#800000;border-color:#005cbf;box-shadow:0 0 0 .2rem rgba(128,0,0,.5)}
+
+.card{
+    width: 100%;
+    margin:0
+}

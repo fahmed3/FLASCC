@@ -2,6 +2,9 @@
 
 {% block body %}
 
+
+<a href="/" class="btn btn-primary" id="homebtn">Home</a>
+<br>
 <h1> Search results: </h1>
 {% for item in results %}
 
@@ -18,7 +21,7 @@ Pass in a list named results with the following in each element:
 }
 -->
 
-<div class="card" style="width: 40rem; margin:0 auto;">
+<div class="card">
   <div class="card-body">
     <h4 class="card-title">{{item.name}}</h4>
     <p class="card-text">{{item.address}}</p>
