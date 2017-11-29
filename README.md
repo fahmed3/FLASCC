@@ -14,4 +14,8 @@ Clone the repo and, in the root of the directory, create a file named "keys.json
 ```
 A Google Maps Directions API key can be obtained [here](https://developers.google.com/maps/documentation/directions/) and a Zomato API key can be obtained [here](https://developers.zomato.com/api).
 
+You may also need to install the following dependencies using `pip install <dependency>`:
+* `requests`
+* `urllib3`
+
 Now run `python app.py` in the terminal. Go to `127.0.0.1:5000` in a browser to begin using the application.
