@@ -1,35 +1,47 @@
 import requests
 
 def get_restaurants(key, origin, keyword):
-	#in case origin  or keyword are multiple words long
-	origin = "%20".join(origin.split(", "))
-	origin = "%22" + ("%20".join(origin.split(" "))) + "%22"
-	keyword = "+".join(keyword.split(" ")) + ""
-	print "https://developers.zomato.com"\
-	"/api/v2.1/search?"\
-	"entity_id=%s"\
-	"&q=%s"\
-	"&sort=real_distance"%(origin, keyword)
-
-	url = "https://developers.zomato.com"\
-	"/api/v2.1/search?"\
-	"entity_id=%s"\
-	"&q=%s&sort=real_distance"%(origin,keyword)
+	# #in case origin  or keyword are multiple words long
+	# origin = "%20".join(origin.split(", "))
+	# origin = "%22" + ("%20".join(origin.split(" "))) + "%22"
+	# keyword = "+".join(keyword.split(" ")) + ""
+	# print "https://developers.zomato.com"\
+	# "/api/v2.1/search?"\
+	# "entity_id=%s"\
+	# "&q=%s"\
+	# "&sort=real_distance"%(origin, keyword)
+	#
+	# url = "https://developers.zomato.com"\
+	# "/api/v2.1/search?"\
+	# "entity_id=%s"\
+	# "&q=%s&sort=real_distance"%(origin,keyword)
+	#
+	# headers = {'Accept': 'application/json','user-key': key}
+	# response = requests.get(url, headers=headers)
+	#
+	# # print "\n\n"
+	# # for x in response:
+    # # 	print x
+    # # for y in response[x]:
+    # #     print (y,':',response[x][y])
+	# print response
+	# print response.json()
+	# return response
 
 	headers = {'Accept': 'application/json','user-key': key}
-	response = requests.get(url, headers=headers)
+	response = requests.get("https://developers.zomato.com/api/v2.1/locations?query=%s" %origin, headers = headers).json()
+	locationId = response['location_suggestions'][0]['entity_id']
+	response = requests.get("https://developers.zomato.com/api/v2.1/search?entity_id=%d&entity_tyoe=city&q=%s" % (locationId, keyword), headers = headers).json()
 
-	# print "\n\n"
-	# for x in response:
-    # 	print x
-    # for y in response[x]:
-    #     print (y,':',response[x][y])
-	print response
-	print response.json()
-	return response
+	return response['restaurants']
+
+
 
 def get_restaurant(key, restaurant_id):
-	pass
+	headers = {'Accept': 'application/json','user-key': key}
+	print "\n\n" + restaurant_id + "\n\n"
+	response = requests.get("https://developers.zomato.com/api/v2.1/restaurant?res_id=%s" % (restaurant_id), headers = headers).json()
+	return response
 
 #can't use dict because its a reserved keyword
 def get_rating(d):
@@ -54,5 +66,4 @@ def get_id(d):
 	'''
 	for use when passing data from results page to info page
 	'''
-	#print d
-	return d['restaurant']['id']
+	return d["restaurant"]["id"]
