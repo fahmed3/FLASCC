@@ -1,0 +1,12 @@
+FLASCC
+Fabiha Ahmed, Cynthia Cheng, Stanley Lin
+Eatables
+Design Doc Changes
+
+Front End
+-Both the address bar and the search bar are in home.html. There is no separate page for the search bar since it's already on the homepage.
+-Used Bootstrap for styling. Stylesheet is named style.css instead of design.css.
+
+Back End
+-There is no get_parameters() function in app.py, the form data is taken in by result() and info().
+-Functions get_id(d) and get_restaurant(key, restaurant_id) added to food.py to pass data from the results page to the info page.

@@ -27,9 +27,23 @@ h1{
     float: right;
 }
 
+a {
+    color:#0000cc;
+    font-weight: bold;
+    margin: 0 2rem;
+}
+
+.direc{
+    background:rgba(255, 238, 230,0.6);
+}
+
 .desc{
     font-size:115%;
     text-align: center;
+    text-shadow: 0.3px 0.3px black;
+}
+
+p {
     text-shadow: 0.3px 0.3px black;
 }
 
@@ -38,7 +52,7 @@ html{
 }
 
 body{
-    background:rgba(255,255,255,0.6);
+    background:rgba(255, 238, 230,0.6);
 }
 
 #homebtn{

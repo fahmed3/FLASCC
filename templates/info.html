@@ -20,8 +20,8 @@ Pass in a dictionary named restaurant with the following:
 }
 -->
 
-
 <h1> {{restaurant.name}} </h1>
+
 <h4 style="text-align: center;"> {{restaurant.address}} </h4>
 
 <div class="container">
@@ -37,17 +37,16 @@ Pass in a dictionary named restaurant with the following:
 
 <p style="text-align: center;"> Cuisines offered: {{restaurant.cuisines}} </p>
 
-<a href={{restaurant.menu}} style="margin:0 auto;">Menu link</a>
+<a href={{restaurant.menu}}> Menu link</a>
 
-
+<div class="direc">
 <h2> Directions: </h2>
-
 <ol class="steps">
 {% for step in restaurant.directions %}
   <!--so jinja won't convert the html to literal string-->
   <li class="step">{{step|safe}}</li>
 {% endfor %}
 </ol>
+</div>
 <br>
-
 {% endblock %}
