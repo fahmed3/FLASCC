@@ -30,6 +30,7 @@ changed address form to accept different parameters, tweaked home.html and css
 
 chengC - 2017-11-26 13:30:10
 added zomato api calls to food.py 
+
 linS -- 2017-11-27 14:36:40
 POC of the results page
 
@@ -40,6 +41,9 @@ ahmedF -- 2017-11-27 22:54:00
 worked on info.html, need to include other info stilllinS -- 2017-11-28 00:18:28
 tested info.html
 
+chengC - 2017-11-26 23:00:10
+fixed dictionary responses on food.py - also updated app.py to work with api calls
+
 linS -- 2017-11-28 14:20:42
 info links now open in a new tab
 
@@ -49,3 +53,5 @@ styling
 ahmedF -- 2017-11-28 19:09:22
 edited app.py, fixed some bugs
 
+chengC - 2017-11-26 20:17:12
+resolved api bugs in food.py and app.py
