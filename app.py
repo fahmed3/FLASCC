@@ -57,7 +57,7 @@ def results():
         api_keys["zomato"],
         session[ORIGIN_ADDRESS],
         search);
-
+    
     results = []
     for item in restaurants:
 		temp = {}
@@ -72,6 +72,7 @@ def results():
 
 		temp["distance"] = directions.get_distance(data)
 		temp["travelDuration"] = directions.get_time(data)
+		
 		results.append(temp)
 
     return render_template("results.html", results=results)
