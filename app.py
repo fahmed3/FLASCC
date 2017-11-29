@@ -39,6 +39,8 @@ def results():
                 form['city'],
                 form['state'],
                 form['zip'])
+        #city needed to search for nearby resaturants
+        city = form['city']
         #print address
         session[ORIGIN_ADDRESS] = address
     #if all address fields weren't filled in, redirects to home page
@@ -155,7 +157,6 @@ def results():
 
     results = []
     for item in restaurants["restaurants"]:
-		'''
 		temp = {}
 		temp["id"] = food.get_id(item)
 		temp["name"] = food.get_name(item)
@@ -184,7 +185,7 @@ def results():
 		temp["distance"] = directions.get_distance(data)
 		temp["travelDuration"] = directions.get_time(data)
 		results.append(temp)
-        
+		'''
 
     return render_template("results.html", results=results)
 

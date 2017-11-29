@@ -33,26 +33,26 @@ def get_restaurant(key, restaurant_id):
 
 #can't use dict because its a reserved keyword
 def get_rating(d):
-	return d["restaurants"]["user_rating"]["aggregate_rating"]
+	return d["restaurant"]["user_rating"]["aggregate_rating"]
 
 def get_address(d):
-	return d["restaurants"]["location"]["address"]
+	return d["restaurant"]["location"]["address"]
 
 def get_menu(d):
-	return d["restaurants"]["menu_url"]
+	return d["restaurant"]["menu_url"]
 
 def get_cuisines(d):
-	return d["restaurants"]["cuisines"]
+	return d["restaurant"]["cuisines"]
 
 def get_name(d):
-	return d["restaurants"]["name"]
+	return d["restaurant"]["name"]
 
 def get_num_of_reviews(d):
-	return d["restaurants"]["all_reviews_count"]
+	return d["restaurant"]["all_reviews_count"]
 
 def get_id(d):
 	'''
 	for use when passing data from results page to info page
 	'''
-	print d + "\n"
-	return d[0]
+	#print d
+	return d['restaurant']['id']
